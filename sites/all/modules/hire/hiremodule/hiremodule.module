@@ -14,6 +14,7 @@ function hiremodule_menu(){
 }
 
 function bw_hire_equipment_page(){
+    module_load_include('inc', 'hiremodule', 'hire_equipment_page');
     return bw_list_equipment(BWEquipment::getAll());
 
     // $action = $_GET['action'];
