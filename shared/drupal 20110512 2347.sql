@@ -18,8 +18,8 @@
 -- Create schema drupal
 --
 
-CREATE DATABASE IF NOT EXISTS drupal;
-USE drupal;
+CREATE DATABASE IF NOT EXISTS bushwalking;
+USE bushwalking;
 
 --
 -- Definition of table `access`
