@@ -15,7 +15,7 @@ function bw_index(){
 
 function bw_post_book(){
     global $user;
-	// FIXME update in db
+	
 	// TODO $user->uid;
     drupal_set_message('Equipment has been booked.');
     drupal_goto('hire_equipment');

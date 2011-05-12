@@ -86,6 +86,7 @@ function bw_equipment_form($equipment, $action_name, $action_path, $assoc=true){
 	// $form = '<form action="'.$action_path.'" method="post" accept-charset="utf-8">';
 	$form = '<form action="'.$action_path.'" method="post" accept-charset="utf-8">';
 	$form .= '<input type="hidden" name="'.$action_name.'" value="'.$action_name.'">';
+	$form .= '<input type="hidden" name="id" value="'.$equipment['id'].'">';
 	
 	foreach($equipment as $key => $val){
 		if($key != 'id'){
@@ -93,7 +94,7 @@ function bw_equipment_form($equipment, $action_name, $action_path, $assoc=true){
 		}		
 	}	
 
-	$form .= '<input type="submit" name="'.$action_name.'_btn" value="'.$action_name.'" id="'.$equipmen['id'].'">';
+	$form .= '<input type="submit" name="'.$action_name.'_btn" value="'.$action_name.'" id="'.$equipment['id'].'">';
 	$form .= '</form>';
 	return $form;
 }
