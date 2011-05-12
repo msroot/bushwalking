@@ -8,6 +8,7 @@
  * @author Victor Nava
  *
  */
+// FIXME make methods STATIC!
 class model {
 	public static $dbCon;
 	public $tableName = 'model';
@@ -44,7 +45,7 @@ class model {
         $stmt = $this->dbCon->prepare($sql);
         $params = array(':id'=>$id);
         $stmt->execute($params);
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 	
 	
@@ -53,7 +54,7 @@ class model {
 		$stmt = $this->dbCon->prepare($sql);
 		$params = array(':val'=>$val);
 		$stmt->execute($params);
-		return $stmt->fetchAll(PDO::FETCH_OBJ);
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 		
 	/**
@@ -72,7 +73,7 @@ class model {
 			$from = $page * $this->pageSize;
 			$sql = "SELECT * FROM $this->tableName LIMIT $from, $this->pageSize";
 		}
-		return $this->dbCon->query($sql)->fetchAll(PDO::FETCH_OBJ);
+		return $this->dbCon->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 	}
 
 	/**
@@ -111,7 +112,7 @@ class model {
 		if($rowCount < 1){
 			return false;
 		}
-		return $this->dbCon->query($sqlLast)->fetchAll(PDO::FETCH_OBJ);	
+		return $this->dbCon->query($sqlLast)->fetchAll(PDO::FETCH_ASSOC);	
 	}
 
 	/**

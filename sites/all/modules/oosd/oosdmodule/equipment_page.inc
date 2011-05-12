@@ -1,26 +1,33 @@
 <?php
 
 // include  model classes
-module_load_include('inc', 'oosdmodule', 'equipment');
+module_load_include('php', 'oosdmodule', 'equipment');
 
 /******************* controller functions *******************/
 
 /******************* get methods *******************/
 
+function bw_index(){
+	$equipment = new equipment();
+	return bw_list_equipment($equipment->getAll());
+}
+
 function bw_get_update(){ 
-	// FIXME get from db
-	$equipment = array("id" => 1, "category" => "tent", "name" => "Tent 3 man", "description" => "good for 3 man", "price" => 10 );
-	return bw_equipment_form($equipment, "update", "");
+	$equipment = new equipment();
+	$e = $equipment->get($_GET[id]);
+	return bw_equipment_form($e, "update", "");
 }
 
 function bw_get_add(){ 
-	// TODO do this automaticaly
-	$equipment = array("id" => "", "category" => "", "name" => "", "description" => "", "price" => "" );
-	return bw_equipment_form($equipment, "add", "");
+	$equipment = new equipment();
+	$fields = array();
+	foreach($equipment->getTableColumns($equipment->tableName) as $col){
+		$fields[$col] = "";
+	}
+	return bw_equipment_form($fields, "add", "");
 }
 
 /******************* post methods *******************/
-
 
 function bw_post_add(){
 	// FIXME do on DB
@@ -29,7 +36,7 @@ function bw_post_add(){
 }
 
 function bw_post_update(){
-	// FIXME do on DB	
+	// $equipment = new equipment();
 	drupal_set_message('Equipment updated');
 	drupal_goto('equipment');
 }
@@ -69,7 +76,7 @@ function bw_list_equipment($equipmentList){
 	return $form;
 }
 
-function bw_equipment_form($equipment, $action_name, $action_path){
+function bw_equipment_form($equipment, $action_name, $action_path, $assoc=true){
 	// $form = '<form action="'.$action_path.'" method="post" accept-charset="utf-8">';
 	$form = '<form action="'.$action_path.'" method="post" accept-charset="utf-8">';
 	$form .= '<input type="hidden" name="'.$action_name.'" value="'.$action_name.'">';

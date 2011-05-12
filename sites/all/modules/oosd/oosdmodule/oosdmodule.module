@@ -20,27 +20,18 @@ function oosdmodule_menu(){
 // TODO refactor same as bw_equipment_page
 function bw_hire_equipment_page(){
     module_load_include('inc', 'oosdmodule', 'hire_equipment_page');
-    
     $method = bw_get_method();
-    
-    if($method){ return $method(); }
-    
-    return bw_list_available_equipment(BWEquipment::getAll());
+    return $method();
 }
 
 function bw_equipment_page(){
     module_load_include('inc', 'oosdmodule', 'equipment_page');
-    module_load_include('inc', 'oosdmodule', 'equipment');
-    
     $method = bw_get_method();
-    
-    if($method){ return $method(); }
-    
-    return bw_list_equipment(BWEquipment::getAll());
+    return $method();
 }
 
 function bw_get_method(){
-    $method = false;
+    $method = "bw_index";
     $action = $_REQUEST['action'];
     
     if($action){
@@ -54,16 +45,4 @@ function oosdmodule_perm() {
     return array('Hire', 'Manage');
 }
 
-
-// FIXME delete after db is ready
-class BWEquipment {
-	function getAll(){
-		return array(
-			array("id" => 1, "category" => "tent", "name" => "Tent 3 man", "description" => "good for 3 man", "price" => 10 ),
-			array("id" => 2, "category" => "tent", "name" => "Tent 6 man", "description" => "good for 6 man", "price" => 20 ),
-			array("id" => 3, "category" => "backpack", "name" => "backpack", "description" => "a backpack", "price" => 2 ),
-			array("id" => 4, "category" => "shoes", "name" => "hiking shoes", "description" => "good for hiking", "price" => 5 ),
-			);
-	}
-}
 ?>

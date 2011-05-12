@@ -1,10 +1,17 @@
 <?php
 
 // include  model classes
-module_load_include('inc', 'oosdmodule', 'equipment');
-module_load_include('inc', 'oosdmodule', 'hire');
+module_load_include('php', 'oosdmodule', 'equipment');
 
 /******************* controller functions *******************/
+
+/******************* get methods *******************/
+function bw_index(){
+	$equipment = new equipment();
+	return bw_list_available_equipment($equipment->getAll());
+}
+
+/******************* post methods *******************/
 
 function bw_post_book(){
     global $user;
