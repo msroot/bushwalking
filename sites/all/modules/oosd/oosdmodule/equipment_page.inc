@@ -12,12 +12,6 @@ function bw_index(){
 	return bw_list_equipment($equipment->getAll());
 }
 
-function bw_get_update(){ 
-	$equipment = new equipment();
-	$e = $equipment->get($_GET[id]);
-	return bw_equipment_form($e, "update", "");
-}
-
 function bw_get_add(){ 
 	$equipment = new equipment();
 	$fields = array();
@@ -25,6 +19,20 @@ function bw_get_add(){
 		$fields[$col] = "";
 	}
 	return bw_equipment_form($fields, "add", "");
+}
+
+function bw_get_update(){ 
+	$equipment = new equipment();
+	$e = $equipment->get($_GET[id]);
+	return bw_equipment_form($e, "update", "");
+}
+
+function bw_get_delete(){
+	$equipment = new equipment();
+		// TODO handle errors
+	$equipment->delete($_GET['id']);
+	drupal_set_message('Equipment deleted');
+	drupal_goto('equipment');
 }
 
 /******************* post methods *******************/
@@ -42,14 +50,6 @@ function bw_post_update(){
 	// TODO handle errors
 	$equipment->update($_POST);
 	drupal_set_message('Equipment updated');
-	drupal_goto('equipment');
-}
-
-function bw_get_delete(){
-	$equipment = new equipment();
-		// TODO handle errors
-	$equipment->delete($_GET['id']);
-	drupal_set_message('Equipment deleted');
 	drupal_goto('equipment');
 }
 
