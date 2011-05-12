@@ -1,0 +1,32 @@
+drupal 
+sitename: bushwalking
+user: admin
+password: admin
+
+Install Drupal:
+
+create a database for drupal
+download and unzip drupal
+rename folder to site_name
+move folder to the webserver root dir
+copy default.settings.php and rename to settings.php
+browse to the site localhost/site_name
+click install and follow instructions
+
+Install modules:
+
+Download and unzip module
+create modules folder on site_name/sites/all folder
+place downloaded module folder on site_name/sites/all/modules/
+goto administer > modules
+find the module and enable it
+goto Site building > Blocks
+find the module and assign to the page
+
+Make new module:
+
+create module_name folder and plate on sites/all/modules
+move to module_name folder
+create module_name.info file
+create module_name.module file
+create module_name_pages.inc file

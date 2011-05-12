@@ -1,0 +1,54 @@
+
+
+Category 	Name		Description			Price		Select
+cup			blue cup	for coffe			2			[ ]
+cup			green cup	for coffe			2			[ ]
+spoon		small for 	soup				1			[ ]
+spoon		big 		for soup			1			[ ]
+plate		a			for pasta			4			[ ]	
+plate		b			for pasta			4			[ ]
+
+Start date [      ] End date [       ]	(hire)
+
+---------------------------------------------------------------------------------------
+
+What the Member see
+John's
+																							(     staff only   )
+Category 	Name		Description			Price/Day	Start date	End date	 Book	 	update		delete	
+cup			blue cup	for coffe			2			[        ]	[        ]	(book)		(update)	(delete)
+cup			green cup	for coffe			2			[        ]	[        ]	(book)		(update)	(delete)
+spoon		small for 	soup				1			[        ]	[        ]	(book)		(update)	(delete)
+spoon		big 		for soup			1			[        ]	[        ]	(book)		(update)	(delete)
+plate		a			for pasta			4			[        ]	[        ]	(book)		(update)	(delete)
+plate		b			for pasta			4			[        ]	[        ]	(book)		(update)	(delete)
+
+---------------------------------------------------------------------------------------
+
+What staff see for add equipment:
+
+Category	[		]
+Name		[		]
+Description	[		]
+Price/Day	[		]
+				
+				(add)
+				
+---------------------------------------------------------------------------------------
+
+What staff see for update equipment:
+
+Category	[		]
+Name		[		]
+Description	[		]
+Price/Day	[		]
+				
+				(update)
+
+---------------------------------------------------------------------------------------
+What the staff for returning an equipment
+
+hire id 	user id 	user name	equipment name 	Start date	End date	total	status 		update
+
+
+

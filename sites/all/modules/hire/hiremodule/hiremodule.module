@@ -1,0 +1,45 @@
+<?php
+
+function hiremodule_menu(){
+    // $items['myTestForm'] = array(
+    //  'title' =>'Hire Equipment',
+    //  'page callback' => 'bw_hire_equipment_page',
+    //  'access arguments' => array('access content'),
+    //  'type' => MENU_NORMAL_ITEM,
+    // );
+	
+	$items['hireEquipmentFrom'] = array(
+		'title' =>'Hire Equipment',
+		'page callback' => 'bw_hire_equipment_page',
+		'access arguments' => array('access content'),
+		'type' => MENU_NORMAL_ITEM,
+	);
+	
+	return $items;
+}
+
+function bw_hire_equipment_page(){
+	module_load_include('inc', 'hiremodule', 'hire_equipment_page');
+    // return drupal_get_form('bw_hire_equipment_form');
+    // return bw_hello();
+    return bw_list_equipment(BWEquipment::getAll());
+}
+
+// who can use this module?
+function hiremodule_perm() {
+    // need to create different permisisons here
+    return array('Hire', 'Manage');
+}
+
+class BWEquipment {
+    function getAll(){
+        return array(
+            array("id" => 1, "category" => "tent", "name" => "Tent 3 man", "description" => "good for 3 man", "price" => 10 ),
+            array("id" => 2, "category" => "tent", "name" => "Tent 6 man", "description" => "good for 6 man", "price" => 20 ),
+            array("id" => 3, "category" => "backpack", "name" => "backpack", "description" => "a backpack", "price" => 2 ),
+            array("id" => 4, "category" => "shoes", "name" => "hiking shoes", "description" => "good for hiking", "price" => 5 ),
+        );
+    }
+}
+
+?>

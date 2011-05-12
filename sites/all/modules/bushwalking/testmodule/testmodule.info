@@ -1,0 +1,5 @@
+name = "Test Module"
+description = "The test module"
+version = "$Name: DRUPAL-6--1-6 $"
+core = 6.x
+package = "bushwalking"
