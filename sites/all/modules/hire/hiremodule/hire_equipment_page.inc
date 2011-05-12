@@ -41,7 +41,7 @@ function bw_hello(){
 function bw_list_equipment($equipmentList){
     global $user;
 
-    $form = '<form action="equipment" method="get" accept-charset="utf-8">';
+    $form = '<form action="equipment" method="post" accept-charset="utf-8">';
 	$form .= '<input type="hidden" name="action" value="book">';
     $form .= '<table border="0" cellspacing="5" cellpadding="5">';
     $form .= "<tr>";
@@ -71,12 +71,14 @@ function bw_list_equipment($equipmentList){
 }
 
 function bw_equipment_form($equipment, $action_name, $action_path){
-	$form = '<form action="'.$action_path.'" method="get" accept-charset="utf-8">';
-	$form .= '<input type="hidden" name="action" value="book">';
+	// $form = '<form action="'.$action_path.'" method="post" accept-charset="utf-8">';
+	$form = '<form action="'.$action_path.'" method="post" accept-charset="utf-8">';
+	$form .= '<input type="hidden" name="'.$action_name.'" value="'.$action_name.'">';
 		
     foreach($equipment as $key => $val){
-        $form .= '<label for="'.$key.'">'.$key.':</label><input type="text" name="'.$key.'" value="'.$val.'" id="'.$key.'">';
+        $form .= '<label for="'.$key.'">'.$key.':</label><input type="text" name="'.$key.'" value="'.$val.'" id="'.$key.'"><br />';
     }
+
     $form .= '<input type="submit" name="'.$action_name.'_btn" value="'.$action_name.'" id="'.$equipmen['id'].'">';
     $form .= '</form>';
     return $form;
