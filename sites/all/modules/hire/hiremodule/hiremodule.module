@@ -1,28 +1,35 @@
 <?php
 
 function hiremodule_menu(){
-    // $items['myTestForm'] = array(
-    //  'title' =>'Hire Equipment',
-    //  'page callback' => 'bw_hire_equipment_page',
-    //  'access arguments' => array('access content'),
-    //  'type' => MENU_NORMAL_ITEM,
-    // );
-	
-	$items['hireEquipmentFrom'] = array(
+	$items['equipment'] = array(
 		'title' =>'Hire Equipment',
 		'page callback' => 'bw_hire_equipment_page',
 		'access arguments' => array('access content'),
 		'type' => MENU_NORMAL_ITEM,
 	);
-	
+    // $items['equipment/hire'] = array(
+    //  'page callback' => 'hello_malaka'
+    // );
 	return $items;
 }
 
 function bw_hire_equipment_page(){
-	module_load_include('inc', 'hiremodule', 'hire_equipment_page');
-    // return drupal_get_form('bw_hire_equipment_form');
-    // return bw_hello();
-    return bw_list_equipment(BWEquipment::getAll());
+
+    $action = $_GET['action'];
+        
+    module_load_include('inc', 'hiremodule', 'hire_equipment_page');
+	
+	if($_SERVER['REQUEST_METHOD'] == 'GET'){
+	    if(isset($action)) {
+    	    BWEquipmentController::get::$action();
+    	}
+	} else {
+	    
+	}
+		
+    // else{        
+    //     return bw_list_equipment(BWEquipment::getAll());
+    // }    
 }
 
 // who can use this module?
@@ -30,6 +37,24 @@ function hiremodule_perm() {
     // need to create different permisisons here
     return array('Hire', 'Manage');
 }
+
+class BWEquipmentController {
+    class get{
+        function update(){
+            $equipment = array("id" => 1, "category" => "tent", "name" => "Tent 3 man", "description" => "good for 3 man", "price" => 10 );
+            $action_name = "update";
+            $action_path = ""
+            return bw_equipment_form();
+        }
+    }
+    
+    // class post{
+    //     function update(){
+    //         return "the update worked";
+    //     }
+    // }
+}
+
 
 class BWEquipment {
     function getAll(){
