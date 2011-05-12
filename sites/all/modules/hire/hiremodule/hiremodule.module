@@ -39,22 +39,22 @@ function hiremodule_perm() {
     return array('Hire', 'Manage');
 }
 
-class BWEquipmentController {
-    class get{
-        function update(){
-            $equipment = array("id" => 1, "category" => "tent", "name" => "Tent 3 man", "description" => "good for 3 man", "price" => 10 );
-            $action_name = "update";
-            $action_path = ""
-            return bw_equipment_form();
-        }
-    }
-    
-    // class post{
-    //     function update(){
-    //         return "the update worked";
-    //     }
-    // }
-}
+// class BWEquipmentController {
+//     class get{
+//         function update(){
+//             $equipment = array("id" => 1, "category" => "tent", "name" => "Tent 3 man", "description" => "good for 3 man", "price" => 10 );
+//             $action_name = "update";
+//             $action_path = ""
+//             return bw_equipment_form();
+//         }
+//     }
+//     
+//     // class post{
+//     //     function update(){
+//     //         return "the update worked";
+//     //     }
+//     // }
+// }
 
 
 class BWEquipment {
