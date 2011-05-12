@@ -14,18 +14,19 @@ function hiremodule_menu(){
 }
 
 function bw_hire_equipment_page(){
+    return bw_list_equipment(BWEquipment::getAll());
 
-    $action = $_GET['action'];
-        
-    module_load_include('inc', 'hiremodule', 'hire_equipment_page');
-	
-	if($_SERVER['REQUEST_METHOD'] == 'GET'){
-	    if(isset($action)) {
-    	    BWEquipmentController::get::$action();
-    	}
-	} else {
-	    
-	}
+    // $action = $_GET['action'];
+    //         
+    //     module_load_include('inc', 'hiremodule', 'hire_equipment_page');
+    //  
+    //  if($_SERVER['REQUEST_METHOD'] == 'GET'){
+    //      if(isset($action)) {
+    //          c->strtolower($_SERVER['REQUEST_METHOD'])->$action();
+    //      }
+    //  } else {
+    //      
+    //  }
 		
     // else{        
     //     return bw_list_equipment(BWEquipment::getAll());
