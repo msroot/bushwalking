@@ -26,7 +26,7 @@ function membership_menu() {
   $items = array();
   $items['admin/settings/membership'] = array(
     'title'            => 'Membership management',
-    'description'      => 'Configure time-limited membership management.',
+    'description'      => 'Membership management.',
     'page callback'    => 'drupal_get_form',
     'page arguments'   => array('membership_admin_settings'),
     'access arguments' => array('administer membership'),
@@ -50,6 +50,8 @@ function membership_perm() {
 }
 
 function membership_list_form() {
+
+  
   $pagelen = 25;
   $header = array(
     array('data' => t('Username'), 'field' => 'name'),
@@ -100,6 +102,34 @@ function membership_list_form() {
     '#value'  => t('Save'),
     '#weight' => 1,
   );
+  
+  
+  
+  /* ------------------------------------------------------------------------------------------------ */
+//view all expired members 
+$sql = 'select uid from users where uid not  in (select  uid from membership)';	
+$result = pager_query($sql, 900, 0, NULL);
+
+  $form['expiredMembers'] = array(
+    '#type'        => 'fieldset',
+    '#title'       => t('Expired Members'),
+    '#tree'        => TRUE,
+    '#collapsible' => TRUE,
+  );
+  
+  
+while($expired = db_fetch_object($result)) {
+ 
+$form['expiredMembers']['expired'][$expired->uid] = array(
+
+ '#type'          => 'fieldset',
+ '#value' => l(t('ID:' . $expired->uid .' - View User'), 
+ 'user/' . $expired->uid));
+//print_r($user);
+ 
+ }
+ /* ------------------------------------------------------------------------------------------------ */ 
+ 
   return $form;
 }
 
@@ -434,4 +464,7 @@ function membership_cron() {
   }
 }
 
+
+
+ 
 // vim: set ft=php syntax=php expandtab ts=2 sw=2 autoindent smartindent:
