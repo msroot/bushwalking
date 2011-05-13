@@ -45,10 +45,10 @@
 
   <?php 
   
-  global $user;
-  $q= "SELECT * FROM drupal.membership where uid=$user->uid";
-print_r($user);
-  echo $q;
+  //global $user;
+  //$q= "SELECT * FROM drupal.membership where uid=$user->uid";
+//print_r($user);
+  //echo $q;
   
   print $user_profile; ?>
 </div>
