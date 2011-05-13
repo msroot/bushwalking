@@ -12,12 +12,6 @@ function bw_index(){
 	return bw_list_equipment($equipment->getAll());
 }
 
-function bw_get_update(){ 
-	$equipment = new equipment();
-	$e = $equipment->get($_GET[id]);
-	return bw_equipment_form($e, "update", "");
-}
-
 function bw_get_add(){ 
 	$equipment = new equipment();
 	$fields = array();
@@ -27,23 +21,35 @@ function bw_get_add(){
 	return bw_equipment_form($fields, "add", "");
 }
 
+function bw_get_update(){ 
+	$equipment = new equipment();
+	$e = $equipment->get($_GET[id]);
+	return bw_equipment_form($e, "update", "");
+}
+
+function bw_get_delete(){
+	$equipment = new equipment();
+		// TODO handle errors
+	$equipment->delete($_GET['id']);
+	drupal_set_message('Equipment deleted');
+	drupal_goto('equipment');
+}
+
 /******************* post methods *******************/
 
 function bw_post_add(){
-	// FIXME do on DB
+	$equipment = new equipment();
+	// TODO handle errors
+	$equipment->create($_POST);
 	drupal_set_message('Equipment added');
 	drupal_goto('equipment');
 }
 
 function bw_post_update(){
-	// $equipment = new equipment();
+	$equipment = new equipment();
+	// TODO handle errors
+	$equipment->update($_POST);
 	drupal_set_message('Equipment updated');
-	drupal_goto('equipment');
-}
-
-function bw_get_delete(){
-	// FIXME do on DB	
-	drupal_set_message('Equipment deleted');
 	drupal_goto('equipment');
 }
 
@@ -53,39 +59,42 @@ function bw_get_delete(){
 function bw_list_equipment($equipmentList){
 	global $user;
 
-	$form .= '<table border="0" cellspacing="5" cellpadding="5">';
-	$form .= "<tr>";
+	$h = '<p><a href="equipment/?action=add">add equipment</a></p>';
+	$h .= '<table border="0" cellspacing="5" cellpadding="5">';
+	$h .= "<tr>";
 
 	foreach($equipmentList[0] as $key => $val){
-		$form .= "<th>$key</th>";
+		$h .= "<th>$key</th>";
 	}
 	
-	$form .= "</tr>";
+	$h .= "</tr>";
 
 	foreach($equipmentList as $equipment){
-		$form .= "<tr>";
+		$h .= "<tr>";
 		foreach($equipment as $key => $val){
-			$form .= "<th>$val</th>";
+			$h .= "<th>$val</th>";
 		}
-		$form .= '<th><a href="equipment/?action=update&id='.$equipment["id"].'">update</a></th>';
-		$form .= '<th><a href="equipment/?action=delete&id='.$equipment["id"].'">delete</a></th>';
-		$form .= '</tr>';
+		$h .= '<th><a href="equipment/?action=update&id='.$equipment["id"].'">update</a></th>';
+		$h .= '<th><a href="equipment/?action=delete&id='.$equipment["id"].'" onClick="return confirm(\'Are you sure?\')">delete</a></th>';
+		$h .= '</tr>';
 	}       
-	$form .= '</table>';
-	$form .= '<p><a href="equipment/?action=add">add equipment</a></p>';
-	return $form;
+	$h .= '</table>';
+	return $h;
 }
 
 function bw_equipment_form($equipment, $action_name, $action_path, $assoc=true){
 	// $form = '<form action="'.$action_path.'" method="post" accept-charset="utf-8">';
 	$form = '<form action="'.$action_path.'" method="post" accept-charset="utf-8">';
 	$form .= '<input type="hidden" name="'.$action_name.'" value="'.$action_name.'">';
-
+	$form .= '<input type="hidden" name="id" value="'.$equipment['id'].'">';
+	
 	foreach($equipment as $key => $val){
-		$form .= '<label for="'.$key.'">'.$key.':</label><input type="text" name="'.$key.'" value="'.$val.'" id="'.$key.'"><br />';
+		if($key != 'id'){
+			$form .= '<label for="'.$key.'">'.$key.':</label><input type="text" name="'.$key.'" value="'.$val.'" id="'.$key.'"><br />';
+		}		
 	}	
 
-	$form .= '<input type="submit" name="'.$action_name.'_btn" value="'.$action_name.'" id="'.$equipmen['id'].'">';
+	$form .= '<input type="submit" name="'.$action_name.'_btn" value="'.$action_name.'" id="'.$equipment['id'].'">';
 	$form .= '</form>';
 	return $form;
 }

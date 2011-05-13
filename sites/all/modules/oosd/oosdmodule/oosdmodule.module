@@ -14,10 +14,16 @@ function oosdmodule_menu(){
 		'access arguments' => array('access content'),
 		'type' => MENU_NORMAL_ITEM,
 	);
+	
+	$items['hire'] = array(
+		'title' =>'Manage Hire',
+		'page callback' => 'bw_hire_page',
+		'access arguments' => array('access content'),
+		'type' => MENU_NORMAL_ITEM,
+	);
     return $items;
 }
 
-// TODO refactor same as bw_equipment_page
 function bw_hire_equipment_page(){
     module_load_include('inc', 'oosdmodule', 'hire_equipment_page');
     $method = bw_get_method();
@@ -29,6 +35,14 @@ function bw_equipment_page(){
     $method = bw_get_method();
     return $method();
 }
+
+function bw_hire_page(){
+    module_load_include('inc', 'oosdmodule', 'hire_page');
+    $method = bw_get_method();
+    return $method();
+}
+
+
 
 function bw_get_method(){
     $method = "bw_index";
