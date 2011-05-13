@@ -47,9 +47,9 @@ function bw_list_available_equipment($equipmentList){
         $form .= '</tr>';
     }       
     $form .= '</table>';
-	$form .= '<label for="date_from">Date From:</label><input type="text" name="date_from" value="" id="date_from">';
-	$form .= '<label for="date_to">Date to:</label><input type="text" name="date_to" value="" id="date_to">';
-    $form .= '<input type="submit" name="book_btn" value="book" id="book_btn">';
+	$form .= '<ul><li><label for="date_from">Date From:</label><input type="text" class="date-pick" name="date_from" value="" id="date_from"></li>';
+	$form .= '<li><label for="date_to">Date to:</label><input type="text" class="date-pick" name="date_to" value="" id="date_to"></li></ul>';
+    $form .= '<input type="submit" name="book_btn" value="BOOK NOW" id="book_btn">';
     $form .= '</form>';
     return $form;
 }

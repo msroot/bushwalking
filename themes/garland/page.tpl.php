@@ -8,6 +8,20 @@
     <title><?php print $head_title ?></title>
     <?php print $styles ?>
     <?php print $scripts ?>
+	
+	
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://www.kelvinluck.com/assets/jquery/datePicker/v2/demo/scripts/date.js"></script>
+ 		<script type="text/javascript" src="http://www.kelvinluck.com/assets/jquery/datePicker/v2/demo/scripts/jquery.datePicker.js"></script>
+		<link rel="stylesheet" type="text/css" media="screen" href="http://www.kelvinluck.com/assets/jquery/datePicker/v2/demo/styles/datePicker.css">
+		<script type="text/javascript" charset="utf-8">
+            $(function()
+            {
+				$('.date-pick').datePicker({autoFocusNextInput: true});
+            });
+		</script>
+
+		
     <!--[if lt IE 7]>
       <?php print phptemplate_get_ie_styles(); ?>
     <![endif]-->
@@ -38,11 +52,14 @@
           $site_html = implode(' ', $site_fields);
 
           if ($logo || $site_title) {
-            print '<h1><a href="'. check_url($front_page) .'" title="'. $site_title .'">';
+            //print '<h1><a href="'. check_url($front_page) .'" title="'. $site_title .'">';
             if ($logo) {
-              print '<img src="'. check_url($logo) .'" alt="'. $site_title .'" id="logo" />';
+			
+			global $base_url;
+			 
+              print '<img src="'. $base_url .'/themes/garland/images/logo.png" alt="'. $site_title .'"  id="logo" />';
             }
-            print $site_html .'</a></h1>';
+           // print $site_html .'</a></h1>';
           }
         ?>
         </div>
@@ -91,5 +108,7 @@
 <!-- /layout -->
 
   <?php print $closure ?>
+  
+  <div id="bfooter"></div>
   </body>
 </html>

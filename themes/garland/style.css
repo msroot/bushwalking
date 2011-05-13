@@ -1078,3 +1078,85 @@ table.system-status-report tr.ok, table.system-status-report tr.ok th {
   background-color: #dfd;
   border-color: #beb;
 }
+
+#bfooter {
+ height: 82px;
+background: url(images/bottomGrass.png)  repeat-x left bottom !important;
+
+width:100%;
+ }
+ 
+ 
+ 
+ a.dp-choose-date {
+	float: left;
+	width: 16px;
+	height: 16px;
+	padding: 0;
+	margin: 5px 3px 0;
+	display: block;
+	text-indent: -2000px;
+	overflow: hidden;
+	background: url(images/calendar.png) no-repeat; 
+}
+a.dp-choose-date.dp-disabled {
+	background-position: 0 -20px;
+	cursor: default;
+}
+
+
+
+a.dp-choose-date {
+	float: left;
+	width: 16px;
+	height: 16px;
+	padding: 0;
+	margin: 5px 3px 0;
+	display: block;
+	text-indent: -2000px;
+	overflow: hidden;
+	background: url(calendar.png) no-repeat; 
+}
+
+dd {
+	margin: .2em 0 1em;
+}
+ label {
+	width: 160px;
+	display: inline-block;
+	line-height: 1.8;
+	vertical-align: top;
+}
+#chooseDateForm li {
+	list-style: none;
+	padding: 5px;
+	clear: both;
+}
+
+/* makes the input field shorter once the date picker code
+ * has run (to allow space for the calendar icon
+ */
+input.dp-applied {
+	width: 140px;
+	float: left;
+}
+
+input.dp-applied {
+	width: 140px;
+	float: left;
+}
+
+a.dp-choose-date {
+	float: left;
+	width: 16px;
+	height: 16px;
+	padding: 0;
+	margin: 5px 3px 0;
+	display: block;
+	text-indent: -2000px;
+	overflow: hidden;
+	background: url(images/calendar.png) no-repeat; 
+}
+ 
+
+ 
