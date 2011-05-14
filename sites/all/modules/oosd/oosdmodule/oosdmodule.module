@@ -4,21 +4,21 @@ function oosdmodule_menu(){
 	$items['hire_equipment'] = array(
 		'title' =>'Hire Equipment',
 		'page callback' => 'bw_hire_equipment_page',
-		'access arguments' => array('access content'),
+        'access arguments' => array('hire equipment'),
 		'type' => MENU_NORMAL_ITEM,
 	);
 	
-	$items['equipment'] = array(
+	$items['manage_equipment'] = array(
 		'title' =>'Manage Equipment',
 		'page callback' => 'bw_equipment_page',
-		'access arguments' => array('access content'),
+            
 		'type' => MENU_NORMAL_ITEM,
 	);
 	
-	$items['hire'] = array(
+	$items['manage_hire'] = array(
 		'title' =>'Manage Hire',
 		'page callback' => 'bw_hire_page',
-		'access arguments' => array('access content'),
+		'access arguments' => array('manage hire'),
 		'type' => MENU_NORMAL_ITEM,
 	);
     return $items;
@@ -31,9 +31,12 @@ function bw_hire_equipment_page(){
 }
 
 function bw_equipment_page(){
-    module_load_include('inc', 'oosdmodule', 'equipment_page');
-    $method = bw_get_method();
-    return $method();
+    if(user_access("manage equipment")){
+        module_load_include('inc', 'oosdmodule', 'equipment_page');
+        $method = bw_get_method();
+        return $method();
+    }
+    echo "don't permission"; exit;
 }
 
 function bw_hire_page(){
@@ -56,7 +59,7 @@ function bw_get_method(){
 
 // who can use this module?
 function oosdmodule_perm() {
-    return array('Hire', 'Manage');
+    return array('hire equipment', 'manage equipment', 'manage hire');
 }
 
 ?>

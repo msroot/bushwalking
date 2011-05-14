@@ -9,7 +9,7 @@ class equipment extends model{
 	}
 
 	function getStatuses(){
-		// TODO this shuold be fetched form db
+		// TODO this should be fetched form db
 		return array("available", "booked");
 	}
 }  

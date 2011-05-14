@@ -92,7 +92,7 @@ function bw_list_all($hireList){
 
 // TODO refactor exactly the same as bw_equipment_form
 function bw_form($hire, $action_name, $action_path, $statuses=array()){
-	$form = '<form action="'.$action_path.'" method="post" accept-charset="utf-8">';
+	$form = '<form action="'.$action_path.'" method="post" accept-charset="utf-8"> id="bw_form"';
 	$form .= '<input type="hidden" name="'.$action_name.'" value="'.$action_name.'">';
 	$form .= '<input type="hidden" name="id" value="'.$hire['id'].'">';
 	
@@ -111,7 +111,7 @@ function bw_form($hire, $action_name, $action_path, $statuses=array()){
 				$form .= '</select>';
 			} else {
 				$class = preg_match("/date_/", $key) ? 'class="date-pick"' : "";
-				$form .= '<label for="'.$key.'">'.$key.':</label><input type="text" '.$class.'name="'.$key.'" value="'.$val.'" id="'.$key.'">';
+				$form .= '<label for="'.$key.'">'.$key.':</label><input type="text" '.$class.' name="'.$key.'" value="'.$val.'" id="'.$key.'">';
 			}
 			$form .= '<br />';
 		}	

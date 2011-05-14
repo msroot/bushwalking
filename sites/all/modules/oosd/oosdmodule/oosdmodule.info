@@ -1,5 +1,5 @@
 name = "OOSD Module"
 description = "The oosd module"
-version = "$Name: DRUPAL-6--1-6 $"
+version = "0.1"
 core = 6.x
 package = "oosd"
