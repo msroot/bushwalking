@@ -11,8 +11,8 @@ function oosdmodule_menu(){
 	$items['manage_equipment'] = array(
 		'title' =>'Manage Equipment',
 		'page callback' => 'bw_equipment_page',
-            
-		'type' => MENU_NORMAL_ITEM,
+        'access arguments' => array('manage equipment'),
+        'type' => MENU_NORMAL_ITEM,
 	);
 	
 	$items['manage_hire'] = array(
@@ -60,6 +60,7 @@ function bw_get_method(){
 // who can use this module?
 function oosdmodule_perm() {
     return array('hire equipment', 'manage equipment', 'manage hire');
+    
 }
 
 ?>
