@@ -1088,35 +1088,10 @@ width:100%;
  
  
  
- a.dp-choose-date {
-	float: left;
-	width: 16px;
-	height: 16px;
-	padding: 0;
-	margin: 5px 3px 0;
-	display: block;
-	text-indent: -2000px;
-	overflow: hidden;
-	background: url(images/calendar.png) no-repeat; 
-}
-a.dp-choose-date.dp-disabled {
-	background-position: 0 -20px;
-	cursor: default;
-}
 
 
 
-a.dp-choose-date {
-	float: left;
-	width: 16px;
-	height: 16px;
-	padding: 0;
-	margin: 5px 3px 0;
-	display: block;
-	text-indent: -2000px;
-	overflow: hidden;
-	background: url(calendar.png) no-repeat; 
-}
+ 
 
 dd {
 	margin: .2em 0 1em;
@@ -1136,7 +1111,7 @@ dd {
 /* makes the input field shorter once the date picker code
  * has run (to allow space for the calendar icon
  */
-input.dp-applied {
+/* input.dp-applied {
 	width: 140px;
 	float: left;
 }
@@ -1145,16 +1120,18 @@ input.dp-applied {
 	width: 140px;
 	float: left;
 }
-
+ */
 a.dp-choose-date {
-	float: left;
+	float: right;
 	width: 16px;
 	height: 16px;
 	padding: 0;
-	margin: 5px 3px 0;
+	margin: 7px 3px 0;
 	display: block;
 	text-indent: -2000px;
 	overflow: hidden;
+	margin-right:400px;
+	margin-top:5px;
 	background: url(images/calendar.png) no-repeat; 
 }
 
@@ -1170,7 +1147,9 @@ box-shadow: 0px 0px 5px #8a8a8a;
 	-khtml-border-radius: 3px;
 
 }
-
+#bw_form select{width: 170px;}
+  #bw_form input{
+width: 160px;
+}
  
-
  
