@@ -6,7 +6,12 @@ class equipment extends model{
 	function __construct(){
 		parent::__construct('equipment');
 		$this->pageSize == 100000;
-	}}  
-	
-	
- 
+	}
+
+	function getStatuses(){
+		// TODO this shuold be fetched form db
+		return array("available", "booked");
+	}
+}  
+
+

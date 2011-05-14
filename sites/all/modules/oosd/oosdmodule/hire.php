@@ -8,3 +8,7 @@ class hire extends model{
 		parent::__construct('hire');
 		$this->pageSize == 100000;
 	}}  
+	
+	// function getStatuses(){
+	// 	return array("booked, started, finished");
+	// }

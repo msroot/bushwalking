@@ -18,13 +18,14 @@ function bw_get_add(){
 	foreach($equipment->getTableColumns($equipment->tableName) as $col){
 		$fields[$col] = "";
 	}
-	return bw_equipment_form($fields, "add", "");
+		
+	return bw_equipment_form($fields, "add", "", $equipment->getStatuses());
 }
 
 function bw_get_update(){ 
 	$equipment = new equipment();
 	$e = $equipment->get($_GET[id]);
-	return bw_equipment_form($e, "update", "");
+	return bw_equipment_form($e, "update", "", $equipment->getStatuses());
 }
 
 function bw_get_delete(){
@@ -82,20 +83,34 @@ function bw_list_equipment($equipmentList){
 	return $h;
 }
 
-function bw_equipment_form($equipment, $action_name, $action_path, $assoc=true){
-	// $form = '<form action="'.$action_path.'" method="post" accept-charset="utf-8">';
-	$form = '<form action="'.$action_path.'" method="post" accept-charset="utf-8">';
-	$form .= '<input type="hidden" name="'.$action_name.'" value="'.$action_name.'">';
-	$form .= '<input type="hidden" name="id" value="'.$equipment['id'].'">';
-	
+function bw_equipment_form($equipment, $action_name, $action_path, $statuses=null){	
+
+	$form = '<form action="'.$action_path.'" method="post" accept-charset="utf-8">' .
+		'<input type="hidden" name="'.$action_name.'" value="'.$action_name.'">' .
+		'<input type="hidden" name="id" value="'.$equipment['id'].'">';
+
 	foreach($equipment as $key => $val){
 		if($key != 'id'){
-			$form .= '<label for="'.$key.'">'.$key.':</label><input type="text" name="'.$key.'" value="'.$val.'" id="'.$key.'"><br />';
-		}		
-	}	
+			if($key == 'status'){
+				$form .= '<label for="'.$key.'">'.$key.':</label><select name="'.$key.'" id="'.$key.'" size="1">';
+				foreach($statuses as $status){
+					if($equipment[status] == $status){
+						$form .= '<option value="'.$status.'" selected="selected">'.$status.'</option>';
+					}
+					else{
+						$form .= '<option value="'.$status.'">'.$status.'</option>';
+					}
+				}
+				$form .= '</select>';
+			} else {
+				$form .= '<label for="'.$key.'">'.$key.':</label><input type="text" name="'.$key.'" value="'.$val.'" id="'.$key.'">';
+			}
+			$form .= '<br />';
+		}	
+	}
 
-	$form .= '<input type="submit" name="'.$action_name.'_btn" value="'.$action_name.'" id="'.$equipment['id'].'">';
-	$form .= '</form>';
+	$form .= '<input type="submit" name="'.$action_name.'_btn" value="'.$action_name.'" id="'.$equipment['id'].'">' .
+		'</form>';
 	return $form;
 }
 ?>
