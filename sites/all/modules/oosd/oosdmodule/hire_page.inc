@@ -97,9 +97,6 @@ function bw_form($hire, $action_name, $action_path, $statuses=array()){
 	$form .= '<input type="hidden" name="id" value="'.$hire['id'].'">';
 	
 	foreach($hire as $key => $val){
-		// if($key != 'id'){
-		// 	$form .= '<label for="'.$key.'">'.$key.':</label><input type="text" name="'.$key.'" value="'.$val.'" id="'.$key.'"><br />';
-		// }
 		if($key != 'id'){
 			if($key == 'status'){
 				$form .= '<label for="'.$key.'">'.$key.':</label><select name="'.$key.'" id="'.$key.'" size="1">';
@@ -113,7 +110,8 @@ function bw_form($hire, $action_name, $action_path, $statuses=array()){
 				}
 				$form .= '</select>';
 			} else {
-				$form .= '<label for="'.$key.'">'.$key.':</label><input type="text" name="'.$key.'" value="'.$val.'" id="'.$key.'">';
+				$class = preg_match("/date_/", $key) ? 'class="date-pick"' : "";
+				$form .= '<label for="'.$key.'">'.$key.':</label><input type="text" '.$class.'name="'.$key.'" value="'.$val.'" id="'.$key.'">';
 			}
 			$form .= '<br />';
 		}	
