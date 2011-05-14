@@ -83,7 +83,7 @@ function bw_list_equipment($equipmentList){
 	return $h;
 }
 
-function bw_equipment_form($equipment, $action_name, $action_path, $statuses=null){	
+function bw_equipment_form($equipment, $action_name, $action_path, $statuses){	
 
 	$form = '<form action="'.$action_path.'" method="post" accept-charset="utf-8">' .
 		'<input type="hidden" name="'.$action_name.'" value="'.$action_name.'">' .

@@ -19,13 +19,13 @@ function bw_get_add(){
 	foreach($hire->getTableColumns($hire->tableName) as $col){
 		$fields[$col] = "";
 	}
-	return bw_form($fields, "add", "");
+	return bw_form($fields, "add", "", $hire->getStatuses());
 }
  
 function bw_get_update(){ 
 	$hire = new hire();
 	$e = $hire->get($_GET[id]);
-	return bw_form($e, "update", "");
+	return bw_form($e, "update", "", $hire->getStatuses());
 }
 
 function bw_get_delete(){
@@ -91,15 +91,32 @@ function bw_list_all($hireList){
 }
 
 // TODO refactor exactly the same as bw_equipment_form
-function bw_form($hire, $action_name, $action_path, $assoc=true){
+function bw_form($hire, $action_name, $action_path, $statuses=array()){
 	$form = '<form action="'.$action_path.'" method="post" accept-charset="utf-8">';
 	$form .= '<input type="hidden" name="'.$action_name.'" value="'.$action_name.'">';
 	$form .= '<input type="hidden" name="id" value="'.$hire['id'].'">';
 	
 	foreach($hire as $key => $val){
+		// if($key != 'id'){
+		// 	$form .= '<label for="'.$key.'">'.$key.':</label><input type="text" name="'.$key.'" value="'.$val.'" id="'.$key.'"><br />';
+		// }
 		if($key != 'id'){
-			$form .= '<label for="'.$key.'">'.$key.':</label><input type="text" name="'.$key.'" value="'.$val.'" id="'.$key.'"><br />';
-		}		
+			if($key == 'status'){
+				$form .= '<label for="'.$key.'">'.$key.':</label><select name="'.$key.'" id="'.$key.'" size="1">';
+				foreach($statuses as $status){
+					if($equipment[status] == $status){
+						$form .= '<option value="'.$status.'" selected="selected">'.$status.'</option>';
+					}
+					else{
+						$form .= '<option value="'.$status.'">'.$status.'</option>';
+					}
+				}
+				$form .= '</select>';
+			} else {
+				$form .= '<label for="'.$key.'">'.$key.':</label><input type="text" name="'.$key.'" value="'.$val.'" id="'.$key.'">';
+			}
+			$form .= '<br />';
+		}	
 	}	
 
 	$form .= '<input type="submit" name="'.$action_name.'_btn" value="'.$action_name.'" id="'.$hire['id'].'">';
