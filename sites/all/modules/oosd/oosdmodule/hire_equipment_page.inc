@@ -2,22 +2,44 @@
 
 // include  model classes
 module_load_include('php', 'oosdmodule', 'equipment');
+module_load_include('php', 'oosdmodule', 'hire');
 
 /******************* controller functions *******************/
 
 /******************* get methods *******************/
 function bw_index(){
 	$equipment = new equipment();
-	return bw_list_available_equipment($equipment->getAll());
+	return bw_list_available_equipment($equipment->getAllBy("status", "available"));
 }
 
 /******************* post methods *******************/
 
 function bw_post_book(){
     global $user;
+	$hire = new hire();
+	$equipment = new equipment();
+		
+	// check if equipment exist
+	$equipmentObj = $equipment->get($_POST["id"]);
+	if(!$equipmentObj){
+		drupal_set_message('There was a problem hiring this equipment, please try again.');
+	    drupal_goto('hire_equipment');
+	}
 	
-	// TODO $user->uid;
-    drupal_set_message('Equipment has been booked.');
+	$hireObj = array(
+		"equipment_id" => $_POST["id"],
+		"user_id" => $user->uid,
+		"date_start" => $_POST["date_start"],
+		"date_end" => $_POST["date_end"],
+		"returned" => "",
+		"status" => "booked"
+	);
+	
+	$hire->create($hireObj);
+	$equipmentObj["status"] = "booked";
+	$equipment->update($equipmentObj);
+	
+	drupal_set_message('Equipment has been booked.');
     drupal_goto('hire_equipment');
 }
 
@@ -47,8 +69,8 @@ function bw_list_available_equipment($equipmentList){
         $form .= '</tr>';
     }       
     $form .= '</table>';
-	$form .= '<ul><li><label for="date_from">Date From:</label><input type="text" class="date-pick" name="date_from" value="" id="date_from"></li>';
-	$form .= '<li><label for="date_to">Date to:</label><input type="text" class="date-pick" name="date_to" value="" id="date_to"></li></ul>';
+	$form .= '<ul><li><label for="date_start">Date Start:</label><input type="text" class="date-pick" name="date_start" value="" id="date_start"></li>';
+	$form .= '<li><label for="date_end">Date End:</label><input type="text" class="date-pick" name="date_end" value="" id="date_end"></li></ul>';
     $form .= '<input type="submit" name="book_btn" value="BOOK NOW" id="book_btn">';
     $form .= '</form>';
     return $form;

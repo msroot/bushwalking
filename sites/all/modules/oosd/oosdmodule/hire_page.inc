@@ -2,6 +2,7 @@
 
 // include  model classes
 module_load_include('php', 'oosdmodule', 'hire');
+module_load_include('php', 'oosdmodule', 'equipment');
 
 /******************* controller functions *******************/
 
@@ -48,6 +49,13 @@ function bw_post_add(){
 function bw_post_update(){
 	$hire = new hire();
 	// TODO handle errors
+	// change the status of the equipment also
+	if($_POST["status"] == "finished"){
+		$equipment = new equipment();
+		$equipmentObj = $equipment->get($_POST["equipment_id"]);
+		$equipmentObj["status"] = "available";
+		$equipment->update($equipmentObj);
+	}
 	$hire->update($_POST);
 	drupal_set_message('Hire updated');
 	drupal_goto('hire');
