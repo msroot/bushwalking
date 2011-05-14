@@ -31,12 +31,9 @@ function bw_hire_equipment_page(){
 }
 
 function bw_equipment_page(){
-    if(user_access("manage equipment")){
-        module_load_include('inc', 'oosdmodule', 'equipment_page');
-        $method = bw_get_method();
-        return $method();
-    }
-    echo "don't permission"; exit;
+    module_load_include('inc', 'oosdmodule', 'equipment_page');
+    $method = bw_get_method();
+    return $method();
 }
 
 function bw_hire_page(){
@@ -44,7 +41,6 @@ function bw_hire_page(){
     $method = bw_get_method();
     return $method();
 }
-
 
 
 function bw_get_method(){
