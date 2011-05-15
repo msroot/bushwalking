@@ -18,8 +18,6 @@
 -- Create schema drupal
 --
 
-CREATE DATABASE IF NOT EXISTS drupal;
-USE drupal;
 
 --
 -- Definition of table `access`
